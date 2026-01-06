@@ -1,13 +1,31 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import * as pdfjsLib from "pdfjs-dist";
 import { ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HighlightsLayer } from "./HighlightsLayer";
 import type { Highlight, PageTextContent } from "@/types/review";
 import { cn } from "@/lib/utils";
 
-// Set worker path
-pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
+// Load PDF.js from CDN
+let pdfjsLib: any = null;
+
+async function loadPdfJs() {
+  if (pdfjsLib) return pdfjsLib;
+  
+  if (typeof window !== 'undefined' && !(window as any).pdfjsLib) {
+    await new Promise<void>((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+      script.onload = () => resolve();
+      script.onerror = reject;
+      document.head.appendChild(script);
+    });
+  }
+  
+  pdfjsLib = (window as any).pdfjsLib;
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  
+  return pdfjsLib;
+}
 
 interface PdfViewerProps {
   url: string;
@@ -25,7 +43,7 @@ export function PdfViewer({
   scrollToPage,
 }: PdfViewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [pdf, setPdf] = useState<pdfjsLib.PDFDocumentProxy | null>(null);
+  const [pdf, setPdf] = useState<any>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [scale, setScale] = useState(1.2);
@@ -40,7 +58,8 @@ export function PdfViewer({
     async function loadPdf() {
       setLoading(true);
       try {
-        const loadedPdf = await pdfjsLib.getDocument(url).promise;
+        const pdfjs = await loadPdfJs();
+        const loadedPdf = await pdfjs.getDocument(url).promise;
         setPdf(loadedPdf);
         setTotalPages(loadedPdf.numPages);
         setRenderedPages(new Set());
@@ -108,7 +127,6 @@ export function PdfViewer({
   useEffect(() => {
     if (!pdf) return;
 
-    // Render current page and adjacent pages
     const pagesToRender = [currentPage - 1, currentPage, currentPage + 1].filter(
       (p) => p >= 1 && p <= totalPages
     );

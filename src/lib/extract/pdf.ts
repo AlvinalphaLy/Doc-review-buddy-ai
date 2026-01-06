@@ -1,8 +1,27 @@
-import * as pdfjsLib from "pdfjs-dist";
 import type { PageTextContent, TextItem } from "@/types/review";
 
-// Set worker path
-pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
+// We'll use pdfjs from CDN to avoid top-level await build issues
+let pdfjsLib: any = null;
+
+async function loadPdfJs() {
+  if (pdfjsLib) return pdfjsLib;
+  
+  // Load PDF.js from CDN
+  if (typeof window !== 'undefined' && !(window as any).pdfjsLib) {
+    await new Promise<void>((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+      script.onload = () => resolve();
+      script.onerror = reject;
+      document.head.appendChild(script);
+    });
+  }
+  
+  pdfjsLib = (window as any).pdfjsLib;
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  
+  return pdfjsLib;
+}
 
 export interface ExtractedPdf {
   text: string;
@@ -11,8 +30,9 @@ export interface ExtractedPdf {
 }
 
 export async function extractPdfText(file: File): Promise<ExtractedPdf> {
+  const pdfjs = await loadPdfJs();
   const arrayBuffer = await file.arrayBuffer();
-  const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+  const pdf = await pdfjs.getDocument({ data: arrayBuffer }).promise;
   
   const pageTexts: PageTextContent[] = [];
   const textParts: string[] = [];
@@ -55,11 +75,12 @@ export async function extractPdfText(file: File): Promise<ExtractedPdf> {
 }
 
 export async function loadPdfDocument(url: string) {
-  return pdfjsLib.getDocument(url).promise;
+  const pdfjs = await loadPdfJs();
+  return pdfjs.getDocument(url).promise;
 }
 
 export async function renderPdfPage(
-  pdf: pdfjsLib.PDFDocumentProxy,
+  pdf: any,
   pageNum: number,
   canvas: HTMLCanvasElement,
   scale: number = 1.5
@@ -87,7 +108,7 @@ export function findTextRects(
   scale: number = 1.5
 ): { x: number; y: number; width: number; height: number }[] {
   const rects: { x: number; y: number; width: number; height: number }[] = [];
-  const searchLower = searchText.toLowerCase().slice(0, 50); // Use first 50 chars for matching
+  const searchLower = searchText.toLowerCase().slice(0, 50);
   
   let accumulatedText = "";
   let startItemIndex = -1;
@@ -96,7 +117,6 @@ export function findTextRects(
     const item = pageText.items[i];
     const itemTextLower = item.str.toLowerCase();
     
-    // Check if this item contains part of our search text
     if (searchLower.includes(itemTextLower) || itemTextLower.includes(searchLower.slice(0, 20))) {
       if (startItemIndex === -1) {
         startItemIndex = i;
@@ -105,7 +125,6 @@ export function findTextRects(
       
       accumulatedText += item.str;
       
-      // If we've accumulated enough matching text, create highlight rects
       if (accumulatedText.toLowerCase().includes(searchLower.slice(0, 20))) {
         for (let j = startItemIndex; j <= i; j++) {
           const matchItem = pageText.items[j];
@@ -128,7 +147,6 @@ export function findTextRects(
     }
   }
 
-  // Merge adjacent rects
   return mergeAdjacentRects(rects);
 }
 
@@ -142,7 +160,6 @@ function mergeAdjacentRects(rects: { x: number; y: number; width: number; height
     const last = merged[merged.length - 1];
     const current = sorted[i];
     
-    // If on same line and close together, merge
     if (Math.abs(current.y - last.y) < 5 && current.x - (last.x + last.width) < 10) {
       last.width = current.x + current.width - last.x;
       last.height = Math.max(last.height, current.height);
