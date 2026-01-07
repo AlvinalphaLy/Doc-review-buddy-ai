@@ -1,0 +1,330 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 60 4% 95%;
+    --foreground: 24 9% 10%;
+
+    --card: 60 9% 97%;
+    --card-foreground: 24 9% 10%;
+
+    --popover: 20 5% 90%;
+    --popover-foreground: 24 9% 10%;
+
+    --primary: 37 92% 50%;
+    --primary-foreground: 47 100% 96%;
+
+    --secondary: 24 5% 44%;
+    --secondary-foreground: 60 9% 97%;
+
+    --muted: 23 5% 82%;
+    --muted-foreground: 24 9% 10%;
+
+    --accent: 47 100% 96%;
+    --accent-foreground: 37 92% 50%;
+
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 0 85% 97%;
+
+    --border: 23 5% 82%;
+    --input: 23 5% 82%;
+    --ring: 37 92% 50%;
+
+    --radius: 1rem;
+
+    /* Risk severity colors */
+    --risk-low: 142 71% 45%;
+    --risk-low-foreground: 0 0% 100%;
+    --risk-low-bg: 142 76% 95%;
+
+    --risk-medium: 38 92% 50%;
+    --risk-medium-foreground: 0 0% 100%;
+    --risk-medium-bg: 38 92% 95%;
+
+    --risk-high: 0 72% 51%;
+    --risk-high-foreground: 0 0% 100%;
+    --risk-high-bg: 0 86% 97%;
+
+    /* Highlight colors for PDF overlays */
+    --highlight-low: 142 71% 45% / 0.25;
+    --highlight-medium: 38 92% 50% / 0.3;
+    --highlight-high: 0 72% 51% / 0.3;
+    --highlight-hover: 222 47% 20% / 0.15;
+
+    /* Progress stages */
+    --progress-active: 222 47% 20%;
+    --progress-complete: 142 71% 45%;
+    --progress-pending: 215 20% 80%;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+    --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+    --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1);
+    --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1);
+    --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 24 9% 10%;
+    --sidebar-primary: 37 92% 50%;
+    --sidebar-primary-foreground: 47 100% 96%;
+    --sidebar-accent: 24 5% 44%;
+    --sidebar-accent-foreground: 60 9% 97%;
+    --sidebar-border: 23 5% 82%;
+    --sidebar-ring: 37 92% 50%;
+    --chart-1: 45 96% 64%;
+    --chart-2: 47 95% 53%;
+    --chart-3: 43 96% 56%;
+    --chart-4: 37 92% 50%;
+    --chart-5: 24 5% 44%;
+    --sidebar: 60 9% 97%;
+    --font-sans: 'Source Sans Pro', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+    --font-serif: 'Source Serif Pro', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+    --font-mono: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+    --tracking-normal: 0em;
+    --spacing: 0.25rem;
+  }
+
+  .dark {
+    --background: 24 9% 10%;
+    --foreground: 60 9% 97%;
+
+    --card: 12 6% 15%;
+    --card-foreground: 60 9% 97%;
+
+    --popover: 30 6% 25%;
+    --popover-foreground: 60 9% 97%;
+
+    --primary: 43 96% 56%;
+    --primary-foreground: 20 91% 14%;
+
+    --secondary: 24 5% 44%;
+    --secondary-foreground: 60 9% 97%;
+
+    --muted: 24 5% 44%;
+    --muted-foreground: 60 9% 97%;
+
+    --accent: 25 83% 14%;
+    --accent-foreground: 47 95% 53%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 85% 97%;
+
+    --border: 33 5% 32%;
+    --input: 33 5% 32%;
+    --ring: 43 96% 56%;
+
+    --risk-low-bg: 142 50% 15%;
+    --risk-medium-bg: 38 50% 15%;
+    --risk-high-bg: 0 50% 15%;
+
+    --highlight-low: 142 71% 45% / 0.35;
+    --highlight-medium: 38 92% 50% / 0.4;
+    --highlight-high: 0 72% 51% / 0.4;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 60 9% 97%;
+    --sidebar-primary: 43 96% 56%;
+    --sidebar-primary-foreground: 20 91% 14%;
+    --sidebar-accent: 47 95% 53%;
+    --sidebar-accent-foreground: 25 83% 14%;
+    --sidebar-border: 33 5% 32%;
+    --sidebar-ring: 43 96% 56%;
+    --chart-1: 45 96% 64%;
+    --chart-2: 48 96% 76%;
+    --chart-3: 43 96% 56%;
+    --chart-4: 37 92% 50%;
+    --chart-5: 33 5% 32%;
+    --sidebar: 12 6% 15%;
+    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+    --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+    --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1);
+    --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1);
+    --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
+    --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-card/80 backdrop-blur-sm border border-border/50;
+  }
+
+  .finding-card {
+    @apply rounded-lg border bg-card p-4 transition-all duration-200 cursor-pointer;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .finding-card:hover {
+    box-shadow: var(--shadow-md);
+    @apply border-primary/20;
+  }
+
+  .finding-card.selected {
+    @apply border-primary ring-2 ring-primary/20;
+  }
+
+  .severity-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .severity-badge.low {
+    @apply bg-[hsl(var(--risk-low-bg))] text-[hsl(var(--risk-low))];
+  }
+
+  .severity-badge.medium {
+    @apply bg-[hsl(var(--risk-medium-bg))] text-[hsl(var(--risk-medium))];
+  }
+
+  .severity-badge.high {
+    @apply bg-[hsl(var(--risk-high-bg))] text-[hsl(var(--risk-high))];
+  }
+
+  .progress-stage {
+    @apply flex items-center gap-2 text-sm;
+  }
+
+  .progress-stage.active {
+    @apply text-primary font-medium;
+  }
+
+  .progress-stage.complete {
+    @apply text-[hsl(var(--risk-low))];
+  }
+
+  .progress-stage.pending {
+    @apply text-muted-foreground;
+  }
+}
+
+/* PDF Viewer styles */
+.pdf-page-container {
+  position: relative;
+  display: inline-block;
+  margin: 0 auto;
+  box-shadow: var(--shadow-lg);
+  background: white;
+}
+
+.pdf-canvas {
+  display: block;
+}
+
+.highlight-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.highlight-rect {
+  position: absolute;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 2px;
+}
+
+.highlight-rect.low {
+  background: hsl(var(--highlight-low));
+  border: 1px solid hsl(142 71% 45% / 0.5);
+}
+
+.highlight-rect.medium {
+  background: hsl(var(--highlight-medium));
+  border: 1px solid hsl(38 92% 50% / 0.5);
+}
+
+.highlight-rect.high {
+  background: hsl(var(--highlight-high));
+  border: 1px solid hsl(0 72% 51% / 0.5);
+}
+
+.highlight-rect:hover,
+.highlight-rect.active {
+  background: hsl(var(--highlight-hover));
+  border-color: hsl(var(--primary));
+}
+
+@keyframes pulse-highlight {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.highlight-rect.flash {
+  animation: pulse-highlight 0.5s ease-in-out 3;
+}
+
+/* Upload dropzone */
+.dropzone {
+  @apply border-2 border-dashed border-border rounded-xl p-12 transition-all duration-200;
+  @apply hover:border-primary/50 hover:bg-muted/50;
+}
+
+.dropzone.active {
+  @apply border-primary bg-primary/5;
+}
+
+/* Risk score display */
+.risk-score-ring {
+  @apply relative inline-flex items-center justify-center;
+}
+
+.risk-score-ring svg {
+  transform: rotate(-90deg);
+}
+
+.risk-score-ring .score-text {
+  @apply absolute text-3xl font-bold;
+}
