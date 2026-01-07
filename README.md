@@ -14,6 +14,22 @@ Doc Review Buddy is a full-stack Document AI application that allows users to up
 
 This project is designed as a **realistic SaaS-style MVP** using **Cloudflare Workers, Durable Objects, and Agents**, with **$0 cost for local and low usage**.
 
+# Doc Review Buddy 🧠📄
+
+## 🎬 Demo
+
+Watch a short walkthrough of the app demo on YouTube:
+
+[![Watch the demo](https://img.youtube.com/vi/RwQR59OQoTI/0.jpg)](https://youtu.be/RwQR59OQoTI)
+
+[Watch the demo video](https://youtu.be/RwQR59OQoTI)
+
+**Smart Contract & Policy Reviewer (Document AI SaaS)**
+
+Doc Review Buddy is a full-stack Document AI application that allows users to upload contracts (PDF, DOCX, TXT), automatically analyze them for legal/compliance risks, and generate explainable findings with risk scores.
+
+This project is designed as a **realistic SaaS-style MVP** using **Cloudflare Workers, Durable Objects, and Agents**, with **$0 cost for local and low usage**.
+
 ---
 
 ## ✨ Features
@@ -49,9 +65,6 @@ Cloudflare Worker (API Gateway)
 +--> ClauseExtractionAgent (Durable Object + SQLite)
 |
 +--> ComplianceAgent (Durable Object + SQLite)
-
-yaml
-Copy code
 
 - **No R2 / no paid services**
 - Uses **Durable Objects SQLite** for state
@@ -99,9 +112,6 @@ doc-review-buddy/
 ├─ README.md
 └─ PROMPT.md
 
-yaml
-Copy code
-
 ---
 
 ## 🛠 Local Development
@@ -112,83 +122,86 @@ Copy code
 cd doc-review-buddy-api
 npm install
 npm run dev
+```
+
 Backend runs at:
 
-cpp
-Copy code
+```text
 http://127.0.0.1:8787
-2️⃣ Start Frontend
-bash
-Copy code
+```
+
+### 2️⃣ Start Frontend
+
+```bash
 cd doc-review-buddy-ui
 npm install
 npm run dev
+```
+
 Frontend runs at:
 
-arduino
-Copy code
+```text
 http://localhost:8080
+```
+
 🔁 API Flow
+
 Create document
 
-nginx
-Copy code
+```http
 POST /doc/create → { docId }
+```
+
 Upload extracted text
 
-ruby
-Copy code
+```http
 POST /doc/:docId/text
+```
+
 Run review
 
-ruby
-Copy code
+```http
 POST /doc/:docId/run
+```
+
 Fetch results
 
-ruby
-Copy code
+```http
 GET /doc/:docId/results
+```
+
 📌 Supported File Types
-Type	Accepted	Preview
-PDF	✅	✅
-DOCX	✅	❌
-TXT	✅	❌
+
+Type Accepted Preview
+PDF ✅ ✅
+DOCX ✅ ❌
+TXT ✅ ❌
 
 DOCX and TXT are fully analyzed, but only PDFs support visual preview and highlights.
 
 🧪 Example High-Risk Clauses Detected
-Unilateral termination
 
-Broad indemnification
-
-Unlimited liability
-
-Perpetual confidentiality (low severity)
+- Unilateral termination
+- Broad indemnification
+- Unlimited liability
+- Perpetual confidentiality (low severity)
 
 🧠 Why This Project Matters
-Demonstrates real SaaS architecture
 
-Combines frontend + backend + AI agents
-
-Uses Cloudflare’s edge-first stack
-
-Free to run locally and cheap to scale
-
-Enterprise-relevant legal/compliance use case
+- Demonstrates real SaaS architecture
+- Combines frontend + backend + AI agents
+- Uses Cloudflare’s edge-first stack
+- Free to run locally and cheap to scale
+- Enterprise-relevant legal/compliance use case
 
 📈 Next Possible Improvements
-DOCX → HTML preview
 
-TXT preview panel
-
-LLM-powered clause reasoning
-
-Policy memory & versioning
-
-Multi-tenant auth
-
-Export to PDF report
+- DOCX → HTML preview
+- TXT preview panel
+- LLM-powered clause reasoning
+- Policy memory & versioning
+- Multi-tenant auth
+- Export to PDF report
 
 Preview screenshots from the running app (place these files in `doc-review-buddy-ui/public/`):
 
@@ -200,4 +213,3 @@ Preview screenshots from the running app (place these files in `doc-review-buddy
 
 ⚠️ Disclaimer
 This project is for educational/demo purposes only and does not constitute legal advice.
-```
