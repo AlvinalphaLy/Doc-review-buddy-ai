@@ -4,6 +4,8 @@
 
 Watch a short walkthrough of the app demo on YouTube:
 
+[![Watch the demo](https://img.youtube.com/vi/RwQR59OQoTI/0.jpg)](https://youtu.be/RwQR59OQoTI)
+
 [Watch the demo video](https://youtu.be/RwQR59OQoTI)
 
 **Smart Contract & Policy Reviewer (Document AI SaaS)**
@@ -187,7 +189,6 @@ Policy memory & versioning
 Multi-tenant auth
 
 Export to PDF report
-
 
 Preview screenshots from the running app (place these files in `doc-review-buddy-ui/public/`):
 
