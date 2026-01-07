@@ -1,4 +1,5 @@
 # Doc Review Buddy 🧠📄
+
 **Smart Contract & Policy Reviewer (Document AI SaaS)**
 
 Doc Review Buddy is a full-stack Document AI application that allows users to upload contracts (PDF, DOCX, TXT), automatically analyze them for legal/compliance risks, and generate explainable findings with risk scores.
@@ -10,6 +11,7 @@ This project is designed as a **realistic SaaS-style MVP** using **Cloudflare Wo
 ## ✨ Features
 
 ### Frontend
+
 - Upload documents (PDF, DOCX, TXT)
 - PDF viewer with zoom, pagination, and highlights
 - Risk dashboard with:
@@ -19,6 +21,7 @@ This project is designed as a **realistic SaaS-style MVP** using **Cloudflare Wo
 - Export review results
 
 ### Backend
+
 - Stateless API using Cloudflare Workers
 - Stateful AI agents using Durable Objects
 - Clause extraction agent
@@ -51,6 +54,7 @@ Copy code
 ## 🚀 Tech Stack
 
 ### Frontend
+
 - React + TypeScript
 - Vite
 - shadcn/ui
@@ -58,6 +62,7 @@ Copy code
 - Zustand (state management)
 
 ### Backend
+
 - Cloudflare Workers
 - Cloudflare Durable Objects
 - Cloudflare Agents SDK
@@ -94,6 +99,7 @@ Copy code
 ## 🛠 Local Development
 
 ### 1️⃣ Start Backend
+
 ```bash
 cd doc-review-buddy-api
 npm install
@@ -178,3 +184,4 @@ Export to PDF report
 
 ⚠️ Disclaimer
 This project is for educational/demo purposes only and does not constitute legal advice.
+```
