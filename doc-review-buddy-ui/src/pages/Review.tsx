@@ -156,7 +156,12 @@ export default function Review() {
           </div>
 
           <div className="flex items-center gap-3">
-            <ExportButtons />
+            <ExportButtons
+              findings={findings}
+              summary={summary}
+              documentName={document?.name ?? "document"}
+              disabled={isLoading}
+            />
           </div>
         </div>
       </header>

@@ -1,5 +1,11 @@
 # Doc Review Buddy 🧠📄
 
+## 🎬 Demo
+
+Watch a short walkthrough of the app demo on YouTube:
+
+[Watch the demo video](https://youtu.be/RwQR59OQoTI)
+
 **Smart Contract & Policy Reviewer (Document AI SaaS)**
 
 Doc Review Buddy is a full-stack Document AI application that allows users to upload contracts (PDF, DOCX, TXT), automatically analyze them for legal/compliance risks, and generate explainable findings with risk scores.
@@ -181,6 +187,15 @@ Policy memory & versioning
 Multi-tenant auth
 
 Export to PDF report
+
+
+Preview screenshots from the running app (place these files in `doc-review-buddy-ui/public/`):
+
+![Home upload screen](doc-review-buddy-ui/public/demo-1.png)
+
+![Review panel with highlights and dashboard](doc-review-buddy-ui/public/demo-2.png)
+
+![Findings list and PDF highlights](doc-review-buddy-ui/public/demo-3.png)
 
 ⚠️ Disclaimer
 This project is for educational/demo purposes only and does not constitute legal advice.
