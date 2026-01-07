@@ -36,7 +36,7 @@ This project is designed as a **realistic SaaS-style MVP** using **Cloudflare Wo
 
 ### Frontend
 
-- Upload documents (PDF, DOCX, TXT)
+- Upload documents (PDF)
 - PDF viewer with zoom, pagination, and highlights
 - Risk dashboard with:
   - Overall risk score
@@ -173,11 +173,7 @@ GET /doc/:docId/results
 📌 Supported File Types
 
 Type Accepted Preview
-PDF ✅ ✅
-DOCX ✅ ❌
-TXT ✅ ❌
-
-DOCX and TXT are fully analyzed, but only PDFs support visual preview and highlights.
+PDF ✅
 
 🧪 Example High-Risk Clauses Detected
 
