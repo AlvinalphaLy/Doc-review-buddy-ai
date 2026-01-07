@@ -14,22 +14,6 @@ Doc Review Buddy is a full-stack Document AI application that allows users to up
 
 This project is designed as a **realistic SaaS-style MVP** using **Cloudflare Workers, Durable Objects, and Agents**, with **$0 cost for local and low usage**.
 
-# Doc Review Buddy 🧠📄
-
-## 🎬 Demo
-
-Watch a short walkthrough of the app demo on YouTube:
-
-[![Watch the demo](https://img.youtube.com/vi/RwQR59OQoTI/0.jpg)](https://youtu.be/RwQR59OQoTI)
-
-[Watch the demo video](https://youtu.be/RwQR59OQoTI)
-
-**Smart Contract & Policy Reviewer (Document AI SaaS)**
-
-Doc Review Buddy is a full-stack Document AI application that allows users to upload contracts (PDF, DOCX, TXT), automatically analyze them for legal/compliance risks, and generate explainable findings with risk scores.
-
-This project is designed as a **realistic SaaS-style MVP** using **Cloudflare Workers, Durable Objects, and Agents**, with **$0 cost for local and low usage**.
-
 ---
 
 ## ✨ Features
